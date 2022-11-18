@@ -1,0 +1,45 @@
+<blog-header></blog-header>
+
+<div class="box">
+  <div><button (click)="backToBlogHandler()">Back to blog</button></div>
+  <div *ngIf="article$ | async as article">
+    <div class="article">
+      <p>
+        <b>{{ article.id }}.</b> {{ article.title }}
+      </p>
+      <p>{{ article.body }}</p>
+    </div>
+
+    <h2>Комментарии:</h2>
+
+    <div *ngFor="let comment of comments$ | async; index as index">
+      <div class="comments-container">
+        <div>
+          <b>{{ index + 1 }}.{{ comment.name }}</b>
+          <p>
+            <b>{{ comment.email }}</b>
+          </p>
+          <p>{{ comment.body }}</p>
+        </div>
+
+        <div *ngIf="userEmail === comment.email">
+          <button (click)="deleteCommentHandler(comment.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+    <div class="box-inputs">
+      <input
+        class="input"
+        type="text"
+        placeholder="Название комментария"
+        [(ngModel)]="commentTitle"
+      />
+      <textarea
+        class="input"
+        placeholder="Описание комментария"
+        [(ngModel)]="commentDescription"
+      ></textarea>
+      <button (click)="addCommentHandler(article.id)">Add comment</button>
+    </div>
+  </div>
+</div>

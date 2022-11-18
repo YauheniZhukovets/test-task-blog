@@ -1,0 +1,28 @@
+.login-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 320px;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+
+    .inputError {
+      background-color: #f3c4c4;
+    }
+
+    .inputSuccess {
+      background-color: #cff3cf;
+    }
+
+    .error {
+      color: red
+    }
+  }
+}
+
+
+

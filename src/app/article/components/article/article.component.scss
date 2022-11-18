@@ -1,0 +1,33 @@
+.box {
+  padding-top: 60px;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+
+  .article {
+    border: 2px solid azure;
+    padding: 10px;
+    margin: 20px;
+  }
+
+  .comments-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid azure;
+    padding: 10px;
+    margin: 20px;
+  }
+
+  .box-inputs {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 30px;
+    width: 300px;
+  }
+}
+
+

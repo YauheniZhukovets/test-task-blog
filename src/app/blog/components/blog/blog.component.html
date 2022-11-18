@@ -1,0 +1,41 @@
+<blog-header></blog-header>
+
+<div class="box-container">
+  <div class="box-content">
+    <select (change)="sortPost($event)" [value]="selectedSort">
+      <option *ngFor="let option of options" [value]="option.value">
+        {{ option.name }}
+      </option>
+    </select>
+
+    <div *ngFor="let article of articles$ | async; index as index">
+      <div class="article-container">
+        <div>
+          <b style="cursor: pointer" [routerLink]="['/article', article.id]"
+            ><p>{{ article.id }}. {{ article.title }}</p></b
+          >
+          <p>{{ article.body }}</p>
+        </div>
+        <div>
+          <p>Likes: {{ article.favoritesCount }}</p>
+          <button
+            (click)="
+              changeFavoriteHandler({
+                id: article.id,
+                favorite: article.favorited,
+                favCount: article.favoritesCount
+              })
+            "
+          >
+            {{ article.favorited ? 'Dislike' : 'Like' }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button (click)="prevArticlesPortionHandler()">prev</button>
+      {{ currentPage }}
+      <button (click)="nextArticlesPortionHandler()">next</button>
+    </div>
+  </div>
+</div>
