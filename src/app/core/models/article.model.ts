@@ -1,5 +1,3 @@
-export type SortType = 'title' | 'body' | 'id'
-
 export interface Article {
   userId: number
   id: number

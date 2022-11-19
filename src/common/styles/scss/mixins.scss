@@ -1,0 +1,26 @@
+@import 'variables';
+
+@mixin text( $font-family,$font-size, $line-height,$font-weight) {
+  font-family: $font-family;
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  color: $textColor;
+}
+
+@mixin container () {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@mixin flex ($direction, $justifyContent, $alignItems, $wrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  flex-wrap: $wrap;
+}
+
+//@include container();
+//@include flex(row, center, center, nowrap);
+//@include text($textFontFamily, 16px, 1.2, 700);

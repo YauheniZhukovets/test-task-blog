@@ -1,0 +1,41 @@
+@import "src/common/styles/scss/button";
+@import "src/common/styles/scss/variables";
+@import "src/common/styles/scss/mixins";
+
+.notification {
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  z-index: 100;
+
+  .notification-item {
+    font-size: 14px;
+    line-height: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-width: 500px;
+    min-height: 80px;
+    padding: 14px 18px;
+
+    @include text($textFontFamily, 14px, 1.2, 700);
+    border-radius: 2px;
+    background-color: grey;
+
+    &--success {
+      background-color: #9ecc9e;
+    }
+
+    &--error {
+      background-color: #dc8686;
+    }
+
+  }
+
+}
+
+

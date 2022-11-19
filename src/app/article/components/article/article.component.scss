@@ -1,33 +1,29 @@
-.box {
-  padding-top: 60px;
-  width: 800px;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
+@import './src/common/styles/scss/variables';
+@import './src/common/styles/scss/mixins';
+@import './src/common/styles/scss/button';
+
+.article-container {
+  width: 100%;
+  background-color: $bgSecondColor;
+  @include container;
 
   .article {
-    border: 2px solid azure;
+    @include text($textFontFamily, 16px, 1.2, 500);
+    @include flex(row, space-between, center, nowrap);
+    border: 2px solid $primaryColor;
+    letter-spacing: 1px;
     padding: 10px;
-    margin: 20px;
+    min-height: 150px;
+    margin: 10px;
+    background-color: $bgColor;
   }
 
-  .comments-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 2px solid azure;
-    padding: 10px;
-    margin: 20px;
+  .text-title {
+    @include text($textFontFamily, 18px, 1.8, 500);
   }
 
-  .box-inputs {
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    margin: 30px;
-    width: 300px;
+  .text-description {
+    @include text($textFontFamily, 16px, 1.8, 400);
+    padding: 10px;
   }
 }
-
-

@@ -1,21 +1,34 @@
-.login-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 320px;
+@import "src/common/styles/scss/mixins";
+@import "src/common/styles/scss/fields";
+@import "src/common/styles/scss/button";
+@import "src/common/styles/scss/variables";
+
+.login-container {
+  padding: 200px;
+  @include container();
+  @include text($textFontFamily, 14px, 1.2, 400);
+
+  .title{
+    text-align: center;
+  }
 
   .form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    box-sizing: border-box;
+    width: 600px;
+    padding: 20px;
+    margin: 0 auto;
+
+    .submit {
+      padding: 10px;
+      margin: 10px auto;
+
+    }
 
     .inputError {
-      background-color: #f3c4c4;
+      background-color: $primaryColor;
     }
 
     .inputSuccess {
-      background-color: #cff3cf;
+      background-color: $bgSecondColor;
     }
 
     .error {

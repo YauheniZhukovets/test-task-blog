@@ -1,0 +1,43 @@
+@import '../../styles/scss/variables';
+@import "../../styles/scss/mixins";
+
+input {
+  @include text($textFontFamily, 12px, 1.8, 400);
+  padding: 6px 12px;
+  margin: 6px 0;
+  width: 100%;
+  background: $bgSecondColor;
+  border: 1px solid #4a4a4a;
+
+  &:focus {
+    background: $bgColor;
+  }
+}
+
+textarea {
+  @include text($textFontFamily, 12px, 1.8, 400);
+  padding: 15px;
+  width: 100%;
+  margin: 6px 0;
+  background: $bgSecondColor;
+  border: 1px solid #4a4a4a;
+
+  &:focus {
+    background: $bgColor;
+  }
+}
+
+select {
+  @include text($textFontFamily, 12px, 1.8, 400);
+  padding: 6px 12px;
+  width: 100%;
+  background: $bgSecondColor;
+  border: 1px solid #4a4a4a;
+
+  &:focus {
+    background: $bgColor;
+  }
+  &:hover {
+    background: $primarySecondColor;
+  }
+}

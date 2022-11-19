@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject, map } from 'rxjs'
-import { HttpClient } from '@angular/common/http'
+import { BehaviorSubject, catchError, EMPTY, map } from 'rxjs'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { environment } from 'src/environments/environment'
-import { Article, DomainArticle, SortType } from 'src/app/core/models/article.model'
+import { Article, DomainArticle } from 'src/app/core/models/article.model'
+import { SortType } from 'src/app/core/types/sort.type'
+import { NotificationService } from 'src/app/core/services/notification.service'
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +14,10 @@ export class BlogService {
   favoriteCount!: number
   favorited!: boolean
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private notificationService: NotificationService) {}
 
   get favCuntRandom() {
-    this.favoriteCount = Math.floor(Math.random() * 1001)
+    this.favoriteCount = Math.floor(Math.random() * 101)
     return this.favoriteCount
   }
 
@@ -28,6 +30,7 @@ export class BlogService {
     this.http
       .get<Article[]>(`${environment.baseUrl}/posts?_page=${page}`)
       .pipe(
+        catchError(this.errorHandler.bind(this)),
         map(el => {
           return el.map(article => {
             return {
@@ -67,5 +70,10 @@ export class BlogService {
     } else {
       this.articles$.next(stateArticles.sort((a, b) => a[sort] - b[sort]))
     }
+  }
+
+  private errorHandler(err: HttpErrorResponse) {
+    this.notificationService.handleError(err.message)
+    return EMPTY
   }
 }

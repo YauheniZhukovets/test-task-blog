@@ -1,0 +1,50 @@
+<div class="comments-container">
+  <h2 class="title">Комментарии</h2>
+
+  <div class="comments" *ngFor="let comment of comments$ | async; index as index">
+    <div>
+      <p class="text-title">{{ index + 1 }}. {{ comment.name | titlecase }}</p>
+      <p class="text-email">{{ comment.email }}</p>
+      <p>{{ comment.body }}</p>
+    </div>
+
+    <div *ngIf="userEmail === comment.email">
+      <button (click)="deleteCommentHandler(comment.id)">Удалить</button>
+    </div>
+  </div>
+
+  <form class="form" [formGroup]="commentForm" (ngSubmit)="onCommentSubmit(this.articleId)">
+    <label>
+      Название комментария
+      <input
+        type="text"
+        formControlName="name"
+        required
+        [ngClass]="{
+          inputError: name!.invalid && (name!.dirty || name!.touched),
+          inputSuccess: name!.valid
+        }"
+      />
+    </label>
+    <div class="error" *ngIf="name!.invalid && (name!.dirty || name!.touched)">
+      <div *ngIf="name!.errors?.['required']">Поле обязательно</div>
+    </div>
+
+    <label>
+      Описание комментария
+      <textarea
+        formControlName="description"
+        required
+        [ngClass]="{
+          inputError: description!.invalid && (description!.dirty || description!.touched),
+          inputSuccess: description!.valid
+        }"
+      ></textarea>
+    </label>
+    <div class="error" *ngIf="description!.invalid && (description!.dirty || description!.touched)">
+      <div *ngIf="description!.errors?.['required']">Поле обязательно</div>
+    </div>
+
+    <button class="submit" type="submit" [disabled]="commentForm.invalid">Отправить</button>
+  </form>
+</div>
